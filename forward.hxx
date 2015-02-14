@@ -5,6 +5,9 @@
 
 namespace b {
 
+/*
+ * An implementation of `std::forward`.
+ */
 template <typename X>
 static constexpr
 X&&

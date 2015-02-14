@@ -7,6 +7,9 @@ template <typename T> struct __RemoveReference      { using Result = T; };
 template <typename T> struct __RemoveReference<T&>  { using Result = T; };
 template <typename T> struct __RemoveReference<T&&> { using Result = T; };
 
+/*
+ * An implementation of `std::remove_reference_t`.
+ */
 template <typename T>
 using RemoveReference = typename __RemoveReference<T>::Result;
 

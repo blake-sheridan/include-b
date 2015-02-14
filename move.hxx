@@ -5,6 +5,9 @@
 
 namespace b {
 
+/*
+ * An implementation of `std::move`.
+ */
 template <typename X>
 static constexpr
 RemoveReference<X>&&
