@@ -9,7 +9,7 @@ namespace runtime {
 [[noreturn]]
 static
 void
-unreachable_error(const char* file,
+_unreachable_error(const char* file,
                   const char* function,
                   decltype(__LINE__) line,
                   const char* message = nullptr) noexcept

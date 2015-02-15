@@ -11,8 +11,8 @@
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 #ifdef DEBUG
-#  include "b/runtime/assertion_error.hxx"
-#  define b_assert(x, ...) if (!(x)) ::b::runtime::assertion_error(__FILE__, __FUNCTION__, __LINE__, #x, ##__VA_ARGS__);
+#  include "b/runtime/_assertion_error.hxx"
+#  define b_assert(x, ...) if (!(x)) ::b::runtime::_assertion_error(__FILE__, __FUNCTION__, __LINE__, #x, ##__VA_ARGS__);
 #else
 #  include "c/_c_assume.h"
 #  define b_assert(x, ...) _c_assume(x)
