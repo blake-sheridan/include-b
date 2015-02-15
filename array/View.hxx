@@ -34,8 +34,8 @@ struct View
     Unsigned
     length() const
     {
-        return (reinterpret_cast<Unsigned>(this->__n) -
-                reinterpret_cast<Unsigned>(this->__0));
+        b_assert(this->__0 <= this->__n);
+        return static_cast<Unsigned>(this->__n - this->__0);
     }
 
     //--------------------------------------------------------------------------------------------//
