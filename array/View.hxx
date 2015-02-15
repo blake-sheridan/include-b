@@ -59,6 +59,17 @@ struct View
     // Container
 
     constexpr
+    bool
+    contains(const Element& element) const noexcept
+    {
+        for (auto curr : *this)
+            if (curr == element)
+                return true;
+
+        return false;
+    }
+
+    constexpr
     Element&
     operator
     [](Unsigned offset) const
