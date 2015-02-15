@@ -5,16 +5,16 @@
 #include "c/write_.h"
 
 namespace b {
-namespace runtime {
+namespace _runtime {
 
 static inline
 void
-_write_output(const void* data, size_t length) noexcept
+write_output(const void* data, size_t length) noexcept
 {
     ::c::write_(STDOUT_FILENO, data, length); // XXX: errors ignored
 }
 
-} // namespace runtime
+} // namespace _runtime
 } // namespace b
 
 #endif

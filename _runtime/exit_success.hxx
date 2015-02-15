@@ -4,17 +4,17 @@
 #include "c/_exit.h"
 
 namespace b {
-namespace runtime {
+namespace _runtime {
 
 [[noreturn]]
 static inline
 void
-_exit_success() noexcept
+exit_success() noexcept
 {
     _exit(0);
 }
 
-} // namespace runtime
+} // namespace _runtime
 } // namespace b
 
 #endif

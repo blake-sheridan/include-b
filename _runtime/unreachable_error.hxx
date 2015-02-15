@@ -1,15 +1,15 @@
 #ifndef b_runtime_unreachable_error_hxx_
 #define b_runtime_unreachable_error_hxx_
 
-#include "b/runtime/__debug_error.hxx"
+#include "b/_runtime/__debug_error.hxx"
 
 namespace b {
-namespace runtime {
+namespace _runtime {
 
 [[noreturn]]
 static
 void
-_unreachable_error(const char* file,
+unreachable_error(const char* file,
                   const char* function,
                   decltype(__LINE__) line,
                   const char* message = nullptr) noexcept
@@ -21,7 +21,7 @@ _unreachable_error(const char* file,
                   message);
 }
 
-} // namespace runtime
+} // namespace _runtime
 } // namespace b
 
 #endif

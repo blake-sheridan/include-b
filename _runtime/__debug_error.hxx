@@ -5,11 +5,11 @@
 #include "c/memcpy_.h"
 #include "c/strlen.h"
 
-#include "b/runtime/_exit_failure.hxx"
-#include "b/runtime/_write_error.hxx"
+#include "b/_runtime/exit_failure.hxx"
+#include "b/_runtime/write_error.hxx"
 
 namespace b {
-namespace runtime {
+namespace _runtime {
 
 [[noreturn]]
 static
@@ -90,11 +90,11 @@ __debug_error(const char* brief,
 
     length = static_cast<size_t>(next - reinterpret_cast<char*>(data)); // FIXME
 
-    _write_error(data, length);
-    _exit_failure();
+    write_error(data, length);
+    exit_failure();
 }
 
-} // namespace runtime
+} // namespace _runtime
 } // namespace b
 
 #endif

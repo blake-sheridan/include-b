@@ -1,15 +1,15 @@
 #ifndef b_runtime_assertion_error_hxx_
 #define b_runtime_assertion_error_hxx_
 
-#include "b/runtime/__debug_error.hxx"
+#include "b/_runtime/__debug_error.hxx"
 
 namespace b {
-namespace runtime {
+namespace _runtime {
 
 [[noreturn]]
 static
 void
-_assertion_error(const char* file,
+assertion_error(const char* file,
                 const char* function,
                 decltype(__LINE__) line,
                 const char* expression,
@@ -22,7 +22,7 @@ _assertion_error(const char* file,
                   message == nullptr ? expression : message);
 }
 
-} // namespace runtime
+} // namespace _runtime
 } // namespace b
 
 #endif
