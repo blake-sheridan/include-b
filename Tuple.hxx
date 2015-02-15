@@ -2,6 +2,7 @@
 #define b_Tuple_hxx_
 
 #include "b/If.hxx"
+#include "b/Unsigned.hxx"
 #include "b/forward.hxx"
 #include "b/move.hxx"
 
