@@ -4,9 +4,9 @@
 #include "c/alloca.h"
 #include "c/memcpy_.h"
 #include "c/strlen.h"
-#include "c/write_.h"
 
 #include "b/runtime/exit/failure.hxx"
+#include "b/runtime/write/error.hxx"
 
 namespace b {
 
@@ -105,8 +105,7 @@ __debug_error(const char* kind,
 
     length = static_cast<size_t>(next - reinterpret_cast<char*>(data)); // FIXME
 
-    write_(2, data, length);
-
+    runtime::write::error(data, length);
     runtime::exit::failure();
 }
 
