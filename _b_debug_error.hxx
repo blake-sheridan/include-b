@@ -5,7 +5,8 @@
 #include "c/memcpy_.h"
 #include "c/strlen.h"
 #include "c/write_.h"
-#include "c/_exit.h"
+
+#include "b/runtime/exit/failure.hxx"
 
 namespace b {
 
@@ -106,7 +107,7 @@ __debug_error(const char* kind,
 
     write_(2, data, length);
 
-    _exit(1);
+    runtime::exit::failure();
 }
 
 } // namespace b
