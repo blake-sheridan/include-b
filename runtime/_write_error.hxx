@@ -6,16 +6,14 @@
 
 namespace b {
 namespace runtime {
-namespace write {
 
 static inline
 void
-error(const void* data, size_t length) noexcept
+_write_error(const void* data, size_t length) noexcept
 {
     ::c::write_(STDERR_FILENO, data, length); // XXX: errors ignored
 }
 
-} // namespace write
 } // namespace runtime
 } // namespace b
 

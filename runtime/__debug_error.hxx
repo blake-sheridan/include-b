@@ -5,8 +5,8 @@
 #include "c/memcpy_.h"
 #include "c/strlen.h"
 
-#include "b/runtime/exit/failure.hxx"
-#include "b/runtime/write/error.hxx"
+#include "b/runtime/_exit_failure.hxx"
+#include "b/runtime/_write_error.hxx"
 
 namespace b {
 namespace runtime {
@@ -90,8 +90,8 @@ __debug_error(const char* brief,
 
     length = static_cast<size_t>(next - reinterpret_cast<char*>(data)); // FIXME
 
-    write::error(data, length);
-    exit::failure();
+    _write_error(data, length);
+    _exit_failure();
 }
 
 } // namespace runtime
