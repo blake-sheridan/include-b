@@ -4,8 +4,8 @@
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 
 #ifdef DEBUG
-#  include "b/_debug_error!.hxx"
-#  define b_unreachable(...) _b_debug_error("unreachable", ##__VA_ARGS__)
+#  include "b/runtime/unreachable_error.hxx"
+#  define b_unreachable(...) b::runtime::unreachable_error(__FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #  include "c/_c_unreachable.h"
 #  define b_unreachable(...) _c_unreachable()

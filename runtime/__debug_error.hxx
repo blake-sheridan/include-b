@@ -1,5 +1,5 @@
-#ifndef _b_debug_error
-#define _b_debug_error(kind, ...) ::b::__debug_error(kind, __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#ifndef b_runtime_debug_error_hxx_
+#define b_runtime_debug_error_hxx_
 
 #include "c/alloca.h"
 #include "c/memcpy_.h"
@@ -9,32 +9,31 @@
 #include "b/runtime/write/error.hxx"
 
 namespace b {
+namespace runtime {
 
 [[noreturn]]
 static
 void
-__debug_error(const char* kind,
+__debug_error(const char* brief,
               const char* file,
               const char* function,
               decltype(__LINE__) line,
-              const char* brief=nullptr,
-              const char* details=nullptr) noexcept
+              const char* message = nullptr) noexcept
 {
     static const char* FONT_ON  = "\033[31;1m";
     static const char* FONT_OFF = "\033[0m";
     static const char* FILE     = "  * file:     ";
     static const char* FUNCTION = "  * function: ";
     static const char* LINE     = "  * line:     ";
-    static const char* DETAILS  = "  * details:  ";
 
     size_t
     length =  strlen(FONT_ON);
-    length += strlen(kind);
+    length += strlen(brief);
     length += strlen(FONT_OFF);
 
-    if (brief != nullptr) {
+    if (message != nullptr) {
         length += strlen(": ");
-        length += strlen(brief);
+        length += strlen(message);
     }
     length += 1;
 
@@ -50,12 +49,6 @@ __debug_error(const char* kind,
     length += 20; // FIXME
     length += 1;
 
-    if (details != nullptr) {
-        length += strlen(DETAILS);
-        length += strlen(details);
-        length += 1;
-    }
-
     void*
     data = alloca(length);
 
@@ -64,17 +57,17 @@ __debug_error(const char* kind,
 
     memcpy_(next, FONT_ON, strlen(FONT_ON));
     next += strlen(FONT_ON);
-    memcpy_(next, kind, strlen(kind));
-    next += strlen(kind);
+    memcpy_(next, brief, strlen(brief));
+    next += strlen(brief);
     memcpy_(next, FONT_OFF, strlen(FONT_OFF));
     next += strlen(FONT_OFF);
 
-    if (brief != nullptr) {
+    if (message != nullptr) {
         memcpy_(next, ": ", 2);
         next += 2;
 
-        memcpy_(next, brief, strlen(brief));
-        next += strlen(brief);
+        memcpy_(next, brief, strlen(message));
+        next += strlen(message);
     }
     *next++ = '\n';
 
@@ -95,20 +88,13 @@ __debug_error(const char* kind,
     *next++ = (line < 10) ? '0' + static_cast<char>(line) : 'X'; // FIXME
     *next++ = '\n';
 
-    if (details != nullptr) {
-        memcpy_(next, DETAILS, strlen(DETAILS));
-        next += strlen(DETAILS);
-        memcpy_(next, details, strlen(details));
-        next += strlen(details);
-        *next++ = '\n';
-    }
-
     length = static_cast<size_t>(next - reinterpret_cast<char*>(data)); // FIXME
 
-    runtime::write::error(data, length);
-    runtime::exit::failure();
+    write::error(data, length);
+    exit::failure();
 }
 
+} // namespace runtime
 } // namespace b
 
 #endif
