@@ -1,8 +1,8 @@
 #ifndef b_array_View_hxx_
 #define b_array_View_hxx_
 
-#include "b/b_assert.hxx"
 #include "b/Unsigned.hxx"
+#include "b/assert!.hxx"
 
 namespace b {
 namespace array {
