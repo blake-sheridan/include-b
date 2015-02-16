@@ -1,11 +1,11 @@
 #ifndef b_U8_hxx_
 #define b_U8_hxx_
 
-#include "c/uint8_t.h"
+#include "builtin/__UINT8_TYPE__.h"
 
 namespace b {
 
-using U8 = uint8_t;
+using U8 = __UINT8_TYPE__;
 
 } // namespace b
 

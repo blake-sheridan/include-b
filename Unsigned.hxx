@@ -1,11 +1,11 @@
 #ifndef b_Unsigned_hxx_
 #define b_Unsigned_hxx_
 
-#include "c/size_t.h"
+#include "builtin/__SIZE_TYPE__.h"
 
 namespace b {
 
-using Unsigned = size_t;
+using Unsigned = __SIZE_TYPE__;
 
 } // namespace b
 

@@ -1,11 +1,11 @@
 #ifndef b_U64_hxx_
 #define b_U64_hxx_
 
-#include "c/uint64_t.h"
+#include "builtin/__UINT64_TYPE__.h"
 
 namespace b {
 
-using U64 = uint64_t;
+using U64 = __UINT64_TYPE__;
 
 } // namespace b
 
