@@ -109,6 +109,50 @@ struct Array
     }
 
     //--------------------------------------------------------------------------------------------//
+    // Properties
+
+    /*
+     * Return a constant pointer to the underlying data.
+     */
+    constexpr
+    const Element*
+    data() const noexcept
+    {
+        return this->__data;
+    }
+
+    //--------------------------------------------------------------------------------------------//
+    // Methods
+
+    /*
+     * Return whether this array starts with another.
+     * Individual elements are compared with the equality operator.
+     */
+    template <Unsigned M>
+    constexpr
+    bool
+    starts_with(const Array<Element, M>& other) const noexcept
+    {
+        if (N < M)
+            return false;
+
+        const Element*
+        x = this->data();
+
+        const Element*
+        y = other.data();
+
+        const Element* const
+        x_end = x + M;
+
+        for (; x != x_end; ++x, ++y)
+            if (!(*x == *y))
+                return false;
+
+        return true;
+    }
+
+    //--------------------------------------------------------------------------------------------//
     // Sized
 
     static constexpr
