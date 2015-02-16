@@ -125,6 +125,20 @@ struct Array
     // Methods
 
     /*
+     * Return whether this array contains a specific element.
+     */
+    constexpr
+    bool
+    contains(const Element& e) const noexcept
+    {
+        for (auto candidate : *this)
+            if (candidate == e)
+                return true;
+
+        return false;
+    }
+
+    /*
      * Return whether this array ends with a specific subarray.
      */
     template <Unsigned M>
@@ -206,18 +220,7 @@ struct Array
     }
 
     //--------------------------------------------------------------------------------------------//
-    // Container
-
-    constexpr
-    bool
-    contains(const Element& element) const noexcept
-    {
-        for (auto curr : *this)
-            if (curr == element)
-                return true;
-
-        return false;
-    }
+    // Operators
 
     constexpr
     Element&
