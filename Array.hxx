@@ -125,8 +125,34 @@ struct Array
     // Methods
 
     /*
-     * Return whether this array starts with another.
-     * Individual elements are compared with the equality operator.
+     * Return whether this array ends with a specific subarray.
+     */
+    template <Unsigned M>
+    constexpr
+    bool
+    ends_with(const Array<Element, M>& other) const noexcept
+    {
+        if (N < M)
+            return false;
+
+        const Element*
+        x = this->data() + (N - M);
+
+        const Element*
+        y = other.data();
+
+        const Element* const
+        x_end = x + M;
+
+        for (; x != x_end; ++x, ++y)
+            if (!(*x == *y))
+                return false;
+
+        return true;
+    }
+
+    /*
+     * Return whether this array starts with a specific subarray.
      */
     template <Unsigned M>
     constexpr
