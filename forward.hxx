@@ -1,7 +1,7 @@
 #ifndef b_forward_hxx_
 #define b_forward_hxx_
 
-#include "b/RemoveReference.hxx"
+#include "b/reference/Remove.hxx"
 
 namespace b {
 
@@ -11,7 +11,7 @@ namespace b {
 template <typename X>
 static constexpr
 X&&
-forward(RemoveReference<X>& x) noexcept
+forward(reference::Remove<X>& x) noexcept
 {
     return static_cast<X&&>(x);
 }
@@ -19,7 +19,7 @@ forward(RemoveReference<X>& x) noexcept
 template <typename X>
 static constexpr
 X&&
-forward(RemoveReference<X>&& x) noexcept
+forward(reference::Remove<X>&& x) noexcept
 {
     return static_cast<X&&>(x);
 }

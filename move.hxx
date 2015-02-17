@@ -1,7 +1,7 @@
 #ifndef b_move_hxx_
 #define b_move_hxx_
 
-#include "b/RemoveReference.hxx"
+#include "b/reference/Remove.hxx"
 
 namespace b {
 
@@ -10,10 +10,10 @@ namespace b {
  */
 template <typename X>
 static constexpr
-RemoveReference<X>&&
+reference::Remove<X>&&
 move(X&& x) noexcept
 {
-    return static_cast<RemoveReference<X>&&>(x);
+    return static_cast<reference::Remove<X>&&>(x);
 }
 
 } // namespace b
